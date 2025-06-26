@@ -1,0 +1,13 @@
+<main class="flex flex-row h-screen w-full items-center justify-center">
+    <section class="h-full w-3/5 flex flex-col items-center py-24 gap-16">
+        <span class="text-6xl text-[#2E2E2E] font-bold top-0">{{ title }}</span>
+        <ng-content></ng-content>
+    </section>
+    <section class="bg-[#6F4E37] text-[#FFF8F0] h-full w-2/5 flex flex-col items-center justify-between py-24 px-9">
+        <span class="text-6xl font-bold italic tracking-wide">CoffeeBreak;</span>
+        <div class="w-[500px] h-[500px] border-8 border-[#DDB892] rounded-full overflow-hidden">
+            <img src="assets/logo.png" alt="" class="w-full h-full">
+        </div>
+        <span class="text-5xl font-bold tracking-wide text-center italic">Nunca é tarde para beber café</span>
+    </section>
+</main>
