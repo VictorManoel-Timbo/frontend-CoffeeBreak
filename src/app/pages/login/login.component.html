@@ -1,12 +1,20 @@
 <app-login-layout title="Login">
     <form [formGroup]="loginForm"
         class="bg-[#DDB892] border-8 border-[#6F4E37] w-[500px] h-[500px] rounded-2xl flex flex-col items-center justify-between px-12 py-16">
-        <section class="flex flex-col w-full text-[#2E2E2E]">
-            <span class="font-medium">Email</span>
-            <input type="text" class="bg-white mt-1 w-full h-9 rounded-lg px-3 py-1" placeholder="Email"
-                aria-label="">
-            <span class="mt-12 font-medium">Senha</span>
-            <input type="text" class="bg-white mt-1 w-full h-9 rounded-lg px-3 py-1" placeholder="Senha" aria-label="">
+        <section class="flex flex-col gap-12 w-full text-[#2E2E2E]">
+            <app-input
+                formControlName="email"
+                inputName="email"
+                type="email"
+                label="Email"
+                placeholder="carlos.jose@gmail.com"
+            ></app-input>
+            <app-input
+                formControlName="password"
+                inputName="password"
+                type="password"
+                label="Senha"
+            ></app-input>
         </section>
         <section class="flex flex-row justify-evenly w-full gap-6">
             <button class="py-2 w-full cursor-pointer rounded-lg bg-[#FFF8F0] border-2 border-[#5F0F40]">

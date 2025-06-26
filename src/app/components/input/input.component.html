@@ -1,0 +1,10 @@
+<div class="">
+    <label [for]="inputName" class="font-medium mb-1">{{ label }}</label>
+    <input 
+        [type]="type" 
+        [placeholder]="placeholder"
+        [value]="value"
+        (input)="onInput($event)"
+        class="bg-white text-[#7D7D7D] mt-1 w-full h-9 rounded-lg px-3 py-2 active:ring-amber-400"
+    >
+</div>
