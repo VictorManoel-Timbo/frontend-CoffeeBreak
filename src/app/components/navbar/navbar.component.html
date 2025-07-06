@@ -1,0 +1,5 @@
+<div class="w-full bg-[#6F4E37] flex items-center justify-around h-16">
+  @for (route of routes; track route.name) {
+    <a [routerLink]="route.path" class="text-2xl font-bold text-[#FFF8F0] cursor-pointer">{{ route.name }}</a>
+  }
+</div>

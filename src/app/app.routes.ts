@@ -1,30 +1,68 @@
 import { Routes } from '@angular/router';
-import { LoginComponent } from './pages/login/login.component';
-import { SignupComponent } from './pages/signup/signup.component';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { AuthGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
     {
-        path: '', 
+        path: '',
         redirectTo: '/login',
         pathMatch: 'full'
     },
     {
         path: 'login',
-        component: LoginComponent
+        loadComponent: () => import('./pages/login/login.component').then(m => m.LoginComponent),
+        data: {
+            hasNavBar: false
+        }
     },
     {
         path: 'signup',
-        component: SignupComponent
+        loadComponent: () => import('./pages/signup/signup.component').then(m => m.SignupComponent),
+        data: {
+            hasNavBar: false
+        }
     },
     {
         path: 'dashboard',
-        component: DashboardComponent,
-        canActivate: [AuthGuard]
+        loadComponent: () => import('./pages/dashboard/dashboard.component').then(m => m.DashboardComponent),
+        data: {
+            hasNavBar: true
+        },
+        //canActivate: [AuthGuard],
+        /*children: [
+            {
+                path: 'admin',
+                redirectTo: 'admin/users',
+                children: [
+                    {
+                        path: 'users',
+                    },
+                    {
+                        path: 'categories'
+                    },
+                    {
+                        path: 'orders'
+                    },
+                    {
+                        path: 'products'
+                    },
+                    {
+                        path: 'stocks'
+                    },
+                    {
+                        path: 'ingredients'
+                    },
+                    {
+                        path: 'payments'
+                    }
+                ]
+            },
+            {
+                path: 'client'
+            }
+        ]*/
     },
     {
-        path: '**', 
+        path: '**',
         redirectTo: ''
     }
 ];
