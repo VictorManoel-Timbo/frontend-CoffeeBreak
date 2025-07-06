@@ -17,11 +17,18 @@
             ></app-input>
         </section>
         <section class="flex flex-row justify-evenly w-full gap-6">
-            <button class="py-2 w-full cursor-pointer rounded-lg bg-[#FFF8F0] border-2 border-[#5F0F40]">
-                <span class="text-lg font-semibold text-[#2E2E2E]">Cadastrar</span>
+            <button 
+                class="py-2 w-full cursor-pointer rounded-lg bg-[#FFF8F0] border-2 border-[#5F0F40]"
+            ><span (click)="navigate()" class="text-lg font-semibold text-[#2E2E2E]">Cadastrar</span>
             </button>
-            <button class="py-2 w-full cursor-pointer rounded-lg bg-[#7D9A38]">
-                <span class="text-lg font-semibold text-[#FFF8F0]">Entrar</span>
+            <button 
+                [disabled]="!loginForm.valid" 
+                (click)="submit()" 
+                [ngClass]="{
+                        'opacity-50 !bg-[#5f0f40]': !loginForm.valid,
+                    }"
+                class="py-2 w-full cursor-pointer rounded-lg bg-[#7D9A38]"
+            ><span class="text-lg font-semibold text-[#FFF8F0]">Entrar</span>
             </button>
         </section>
     </form>
