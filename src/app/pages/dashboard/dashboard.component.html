@@ -1,4 +1,18 @@
-<main>
-    HOME
-    <button class="" (click)="logout()"><ng-icon name="featherLogOut"></ng-icon></button>
+<main class="px-16 h-full">
+    <section>
+        <div class="flex items-center justify-between py-8">
+            <span class="text-5xl font-bold italic text-[#2E2E2E]">CoffeeBreak;</span>
+            <div class="flex items-center justify-center gap-12">
+                <button class="" (click)="logout()"><ng-icon size="24" name="featherLogOut"></ng-icon></button>
+                <button class=""><ng-icon size="24" name="featherShoppingCart"></ng-icon></button>
+                <button class=""><ng-icon size="24" name="featherUser"></ng-icon></button>
+            </div>
+        </div>
+        @if(hasNavBar) {
+            <app-navbar />
+        } @else {
+            <div class="h-1 bg-[#6F4E37]"></div>
+        }
+    </section>
+    <router-outlet/>
 </main>

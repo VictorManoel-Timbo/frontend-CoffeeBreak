@@ -17,8 +17,6 @@ export class LoginService {
   login(email: string, password: string): Observable<LoginResponse> {
     return this.loginRest.login(email, password).pipe(
       tap((response) => {
-        console.log(response);
-        
         this.storage.setItem('auth-token', response.token);
         this.storage.setItem('email', response.email);
       })
@@ -28,8 +26,6 @@ export class LoginService {
   register(user: User) {
     return this.loginRest.register(user).pipe(
       tap((response) => {
-        console.log(response);
-        
         this.storage.setItem('auth-token', response.token);
         this.storage.setItem('email', response.email);
       })

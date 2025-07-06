@@ -1,1 +1,5 @@
-<router-outlet />
+<main [ngClass]="{
+        'p-[72px]': isLogged()
+    }" class="h-screen overflow-hidden">
+    <router-outlet />
+</main>
