@@ -2,17 +2,19 @@
     <section>
         <div class="flex items-center justify-between py-8">
             <span class="text-5xl font-bold italic text-[#2E2E2E]">CoffeeBreak;</span>
-            <div class="flex items-center justify-center gap-12">
-                <button class="" (click)="logout()"><ng-icon size="24" name="featherLogOut"></ng-icon></button>
-                <button class=""><ng-icon size="24" name="featherShoppingCart"></ng-icon></button>
-                <button class=""><ng-icon size="24" name="featherUser"></ng-icon></button>
+            <div class="flex items-baseline-last justify-center gap-12 h-12">
+                <button class="cursor-pointer" (click)="logout()"><ng-icon size="24" name="featherLogOut"></ng-icon></button>
+                @if(!isAdministrator) {
+                <button class="cursor-pointer"><ng-icon size="24" name="featherShoppingCart"></ng-icon></button>
+                <button class="cursor-pointer"><ng-icon size="24" name="featherUser"></ng-icon></button>
+                }
             </div>
         </div>
         @if(hasNavBar) {
-            <app-navbar />
+        <app-navbar />
         } @else {
-            <div class="h-1 bg-[#6F4E37]"></div>
+        <div class="h-1 bg-[#6F4E37]"></div>
         }
     </section>
-    <router-outlet/>
+    <router-outlet />
 </main>

@@ -1,5 +1,9 @@
 <main [ngClass]="{
-        'p-[72px]': isLogged()
-    }" class="h-screen overflow-hidden">
-    <router-outlet />
+        'px-[72px] pt-[72px]': isLogged()
+    }" class="h-screen">
+    <div [ngClass]="{
+        'p-0 m-0 bg-[#DDB892] w-full h-full': isLogged()
+        }">
+        <router-outlet />
+    </div>
 </main>

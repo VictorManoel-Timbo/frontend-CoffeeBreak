@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { SelectModule } from 'primeng/select';
 import { ReactiveFormsModule } from '@angular/forms';
-import * as Enums from '../../models/enums.model'; // Importa todos os enums de uma vez
+import * as Enums from '../../models/enums.model';
 
 @Component({
   selector: 'app-select',
@@ -11,9 +11,10 @@ import * as Enums from '../../models/enums.model'; // Importa todos os enums de 
   styleUrl: './select.component.css'
 })
 export class SelectComponent implements OnInit {
-  @Input() type!: keyof typeof Enums; // Ex: 'UserRole', 'OrderStatus', etc
-  @Input() controlName!: string;
+  @Input() type!: keyof typeof Enums;
+  @Input() inputName: string = '';
   @Input() placeholder: string = 'Selecione';
+  @Input() label: string = ''
 
   options: { label: string, value: string }[] = [];
 

@@ -11,7 +11,7 @@ import { RouterLink } from "@angular/router";
 })
 export class NavBarComponent {
     routes: any[] = [
-        { name: 'Usuários', path: '../users' },
+        { name: 'Usuários', path: 'admin/users' },
         { name: 'Pedidos', path: '../orders' },
         { name: 'Categorias', path: '../categories' },
         { name: 'Produtos', path: '../products' },

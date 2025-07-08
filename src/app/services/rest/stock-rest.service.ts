@@ -13,8 +13,8 @@ export class StockRestService {
         return this.http.get<Stock[]>(this.baseUrl);
     }
 
-    getStocksOrdered(): Observable<Stock[]> {
-        return this.http.get<Stock[]>(`${this.baseUrl}/ordered`);
+    getStocksOrdered(direction: string): Observable<Stock[]> {
+        return this.http.get<Stock[]>(`${this.baseUrl}/ordered`, { params: { direction } });
     }
 
     getById(id: number): Observable<Stock> {
