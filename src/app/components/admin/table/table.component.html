@@ -1,11 +1,8 @@
-<div class="w-full flex flex-col gap-4 px-3 py-2 bg-[#DDB892]">
-  <!-- Cabeçalho com título, pesquisa e botão -->
+<div class="w-full flex flex-col gap-4 px-6 py-4 bg-[#DDB892]">
+  <!-- Cabeçalho -->
   <div class="flex justify-between items-center flex-wrap gap-4">
-    
     <div class="flex flex-wrap items-center gap-4">
-      <h2 class="text-2xl font-semibold text-[#6F4E37]">
-        {{ title }}
-      </h2>
+      <h2 class="text-2xl font-bold text-[#6F4E37]">{{ title }}</h2>
 
       <input
         type="text"
@@ -24,17 +21,18 @@
     </div>
   </div>
 
-  <!-- Tabela genérica com estilo manual aplicado -->
+  <!-- Tabela -->
   <div class="overflow-x-auto rounded-md border border-gray-300 bg-white">
     <p-table
       [value]="filteredData"
       [columns]="columns"
       class="p-datatable-sm custom-table"
     >
+      <!-- Cabeçalho -->
       <ng-template pTemplate="header" let-columns>
-        <tr class="bg-white text-black border-b border-gray-200">
+        <tr class="bg-white text-gray-800 border-b border-gray-200">
           @for (col of columns; track col.field) {
-            <th class="px-4 py-3 font-semibold text-left">
+            <th class="px-4 py-3 font-bold text-lg text-left">
               {{ col.header }}
             </th>
           }
@@ -42,13 +40,30 @@
         </tr>
       </ng-template>
 
+      <!-- Corpo da Tabela -->
       <ng-template pTemplate="body" let-row let-columns="columns">
-        <tr class="bg-white text-black border-b border-gray-100 hover:bg-gray-50">
+        <tr
+          class="bg-white text-gray-800 border-b border-gray-100 hover:bg-gray-50"
+        >
           @for (col of columns; track col.field) {
             <td class="px-4 py-3">
-              {{ row[col.field] }}
+              <!-- Estilização condicional para campo 'role' -->
+              @if (col.field === 'role') {
+                <span
+                  [ngClass]="{
+                    'bg-[#7D9A38] text-white px-3 py-1 rounded-md font-semibold': row[col.field] === 'ADMIN',
+                    'bg-[#C1A57B] text-white px-3 py-1 rounded-md font-semibold': row[col.field] === 'CLIENT'
+                  }"
+                >
+                  {{ row[col.field] }}
+                </span>
+              } @else {
+                {{ row[col.field] }}
+              }
             </td>
           }
+
+          <!-- Ações -->
           <td class="px-4 py-3">
             <div class="flex gap-4">
               <button
