@@ -1,0 +1,52 @@
+<main class="w-full flex flex-col gap-3 py-4">
+    <div class="flex items-center">
+        <ng-icon routerLink="/dashboard" class="cursor-pointer" size="24" name="featherArrowLeft"></ng-icon>
+    </div>
+    <app-form-layout 
+        title="Cadastrar usuário" 
+        buttonText="Cadastrar"
+        (submit)="submit()">
+        <form [formGroup]="registerForm" class="flex flex-row grow items-center justify-around">
+            <section class="flex flex-col h-full justify-evenly">
+                <app-input
+                    formControlName="name"
+                    inputName="name"
+                    type="text"
+                    label="Nome completo"
+                ></app-input>
+                <app-input
+                    formControlName="email"
+                    inputName="email"
+                    type="email"
+                    label="Email"
+                ></app-input>
+                <app-input
+                    formControlName="country"
+                    inputName="country"
+                    type="text"
+                    label="Nacionalidade"
+                ></app-input>
+            </section>
+            <section class="flex flex-col h-full justify-evenly">
+                <app-input
+                    formControlName="phone"
+                    inputName="phone"
+                    type="text"
+                    label="Telefone"
+                ></app-input>
+                <app-input
+                    formControlName="password"
+                    inputName="password"
+                    type="password"
+                    label="Nova senha"
+                ></app-input>
+                <app-select 
+                    controlName="role"
+                    inputName="role"
+                    type="UserRole" 
+                    label="Função do usuário"
+                ></app-select>
+            </section>
+        </form>
+    </app-form-layout>
+</main>

@@ -28,15 +28,18 @@ export const routes: Routes = [
             hasNavBar: true
         },
         canActivate: [AuthGuard],
-        /*children: [
+        children: [
             {
                 path: 'admin',
-                redirectTo: 'admin/users',
                 children: [
                     {
                         path: 'users',
+                        loadComponent: () => import('./pages/admin/users/register/register.component').then(m => m.RegisterComponent),
+                        data: {
+                            hasNavBar: false
+                        }
                     },
-                    {
+                    /*{
                         path: 'categories'
                     },
                     {
@@ -53,13 +56,13 @@ export const routes: Routes = [
                     },
                     {
                         path: 'payments'
-                    }
+                    }*/
                 ]
             },
-            {
+           /* {
                 path: 'client'
-            }
-        ]*/
+            }*/
+        ]
     },
     {
         path: '**',

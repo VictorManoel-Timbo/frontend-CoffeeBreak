@@ -1,6 +1,6 @@
 <app-login-layout title="Login">
     <form [formGroup]="loginForm"
-        class="bg-[#DDB892] border-8 border-[#6F4E37] w-[500px] h-[500px] rounded-2xl flex flex-col items-center justify-between px-12 py-16">
+        class="bg-[#DDB892] border-8 border-[#6F4E37] w-[500px] h-[500px] rounded-2xl flex flex-col items-center justify-between px-12 py-16 shadow-md">
         <section class="flex flex-col gap-12 w-full text-[#2E2E2E]">
             <app-input
                 formControlName="email"
@@ -18,7 +18,7 @@
         </section>
         <section class="flex flex-row justify-evenly w-full gap-6">
             <button 
-                class="py-2 w-full cursor-pointer rounded-lg bg-[#FFF8F0] border-2 border-[#5F0F40]"
+                class="py-2 w-full cursor-pointer rounded-lg bg-[#FFF8F0] border-2 border-[#5F0F40] hover:border-[#7d9a38] shadow-md"
             ><span (click)="navigate()" class="text-lg font-semibold text-[#2E2E2E]">Cadastrar</span>
             </button>
             <button 
@@ -27,7 +27,7 @@
                 [ngClass]="{
                         'opacity-50 !bg-[#5f0f40]': !loginForm.valid,
                     }"
-                class="py-2 w-full cursor-pointer rounded-lg bg-[#7D9A38]"
+                class="py-2 w-full cursor-pointer rounded-lg bg-[#7D9A38] shadow-md"
             ><span class="text-lg font-semibold text-[#FFF8F0]">Entrar</span>
             </button>
         </section>

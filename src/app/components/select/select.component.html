@@ -1,8 +1,11 @@
-<p-select
-  [options]="options"
-  [placeholder]="placeholder"
-  formControlName="{{ controlName }}"
-  optionLabel="label"
-  optionValue="value"
-  class="bg-white text-[#2E2E2E] mt-1 w-full rounded-lg px-3 py-2"
-/>
+<div class="">
+  <label [for]="inputName" class="font-medium mb-1">{{ label }}</label>
+  <p-select
+    [options]="options"
+    [placeholder]="placeholder"
+    optionLabel="label"
+    optionValue="value"
+    class="bg-white text-[#2E2E2E] mt-1 w-full rounded-lg! px-3"
+  />
+</div>
+
