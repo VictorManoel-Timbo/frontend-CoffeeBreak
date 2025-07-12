@@ -1,10 +1,9 @@
 import { Component } from "@angular/core";
 import { NgIcon, provideIcons } from "@ng-icons/core";
 import { NavBarComponent } from "../../components/navbar/navbar.component";
-import { ActivatedRoute, NavigationEnd, Router, RouterOutlet } from "@angular/router";
+import { ActivatedRoute, Router, RouterOutlet } from "@angular/router";
 import { LoginService } from "../../services/login.service";
 import { featherLogOut, featherShoppingCart, featherUser } from "@ng-icons/feather-icons";
-import { filter } from "rxjs";
 
 @Component({
     selector: 'app-dashboard',
@@ -28,7 +27,7 @@ export class DashboardComponent {
     ) {
         router.events.subscribe(() => {
             const currentRoute = this.getChild(this.activatedRoute);
-            this.hasNavBar = currentRoute.snapshot.data['hasNavBar']
+            this.hasNavBar = currentRoute.snapshot.data['hasNavBar'];
         })
     }
 

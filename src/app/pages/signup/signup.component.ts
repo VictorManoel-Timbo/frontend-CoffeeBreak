@@ -7,6 +7,7 @@ import { LoginService } from '../../services/login.service';
 import { ToastrService } from 'ngx-toastr';
 import { NgClass } from '@angular/common';
 import { User } from '../../models/user.model';
+import { UserService } from '../../services/user.service';
 
 interface SignupForm {
   name: FormControl,
@@ -34,7 +35,7 @@ export class SignupComponent {
 
   constructor(
     private router: Router,
-    private loginService: LoginService,
+    private signupService: LoginService,
     private toastr: ToastrService
   ) {
     this.signupForm = new FormGroup({
@@ -48,19 +49,19 @@ export class SignupComponent {
 
   submit(): void {
     const user: User = {
-      name: this.signupForm.value.name, 
-      email: this.signupForm.value.email, 
+      name: this.signupForm.value.name,
+      email: this.signupForm.value.email,
       phone: this.signupForm.value.phone,
       password: this.signupForm.value.password
     }
-    this.loginService.register(user)
-      .subscribe({
-        next: () => { 
-          this.toastr.success('Cadastro feito com sucesso')
-          this.router.navigate(['dashboard']) 
-        },
-        error: () => { this.toastr.error('Erro inesperado, tente novamente mais tarde') }
-      });
+    this.signupService.log.subscribe({
+      next: () => {
+        this.toastr.success('Cadastro feito com sucesso')
+        this.router.navigate(['dashboard'])
+      },
+      error: () => { this.toastr.error('Erro inesperado, tente novamente mais tarde') }
+    });
+    this.signupService.register(user);
   }
 
   navigate(): void {

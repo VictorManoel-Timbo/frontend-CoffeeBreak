@@ -1,14 +1,21 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
 
 @Injectable({ providedIn: 'root' })
-export class LocalStorageUtil<T = any> {
-  setItem(key: string, value: T): void {
-    localStorage.setItem(key, JSON.stringify(value));
+export class LocalStorageUtil {
+  setItem<T>(key: string, value: T): void {
+    const toStore = typeof value === 'string' ? value : JSON.stringify(value);
+    localStorage.setItem(key, toStore);
   }
 
-  getItem(key: string): T | null {
+  getItem<T>(key: string): T | string | null {
     const item = localStorage.getItem(key);
-    return item ? JSON.parse(item) : null;
+    if (item === null) return null;
+
+    try {
+      return JSON.parse(item);
+    } catch {
+      return item; // fallback para string simples
+    }
   }
 
   removeItem(key: string): void {

@@ -6,7 +6,7 @@ import { User } from "../../models/user.model";
 
 @Injectable({ providedIn: 'root' })
 export class LoginRestService {
-  private baseUrl: string = "http://localhost:8080/auth";
+  private baseUrl: string = "http://localhost:8080/api/v1/auth";
 
   constructor(private http: HttpClient) {}
 

@@ -27,7 +27,7 @@ export const routes: Routes = [
         data: {
             hasNavBar: true
         },
-        //canActivate: [AuthGuard],
+        canActivate: [AuthGuard],
         /*children: [
             {
                 path: 'admin',
