@@ -21,7 +21,7 @@ import { UserRole } from "../../models/enums.model";
 })
 export class DashboardComponent {
     hasNavBar: boolean = false;
-    isAdministrator: boolean = false;
+    role: string | null = null;
 
     constructor(
         private router: Router,
@@ -32,7 +32,22 @@ export class DashboardComponent {
             const currentRoute = this.getChild(this.activatedRoute);
             this.hasNavBar = currentRoute.snapshot.data['hasNavBar'];
         })
-        this.isAdministrator = this.isAdmin();
+        this.role = this.isAdmin();
+        this.redirectBasedOnRole();
+    }
+
+    redirectBasedOnRole(): void {
+        const currentUrl = this.router.url;
+
+        if (currentUrl !== '/dashboard') return;
+
+        if (this.role === 'ADMIN') {
+            this.router.navigate(['dashboard', 'admin', 'users']);
+        } else if (this.role === 'CLIENT') {
+            this.router.navigate(['dashboard', 'client']);
+        } else {
+            this.router.navigate(['login']);
+        }
     }
 
     logout(): void {
@@ -40,8 +55,8 @@ export class DashboardComponent {
         this.router.navigate(['login']);
     }
 
-    isAdmin(): boolean {
-        return new LocalStorageUtil().getItem('role') === UserRole.ADMIN;
+    isAdmin(): string | null {
+        return new LocalStorageUtil().getItem('role');
     }
 
     private getChild(route: ActivatedRoute): ActivatedRoute {
