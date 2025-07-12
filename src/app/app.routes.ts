@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
+import { AdminGuard } from './guards/admin.guard';
 
 export const routes: Routes = [
     {
@@ -31,7 +32,9 @@ export const routes: Routes = [
         children: [
             {
                 path: 'admin',
+                canActivate: [AdminGuard],
                 children: [
+                    { path: '', redirectTo: 'users', pathMatch: 'full' },
                     {
                         path: 'users',
                         loadComponent: () => import('./pages/admin/users/register/register.component').then(m => m.RegisterComponent),
@@ -59,9 +62,13 @@ export const routes: Routes = [
                     }*/
                 ]
             },
-           /* {
-                path: 'client'
-            }*/
+            {
+                path: 'client',
+                loadComponent: () => import('./pages/client/client.component').then(m => m.ClientComponent),
+                data: {
+                    hasNavBar: false
+                }
+            }
         ]
     },
     {
