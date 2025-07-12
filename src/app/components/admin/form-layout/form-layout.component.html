@@ -5,8 +5,14 @@
         </div>
         <ng-content></ng-content>
         <div class="flex justify-center">
-            <button (click)="submit()" class="py-2 px-16 cursor-pointer rounded-lg bg-[#7D9A38] shadow-sm"><span
-                    class="text-lg font-semibold text-[#FFF8F0]">{{ buttonText }}</span>
+            <button 
+                [disabled]="disabledButton"
+                (click)="submit()" 
+                [ngClass]="{
+                        'opacity-50 !bg-[#5f0f40]': disabledButton,
+                    }"
+                class="py-2 px-16 cursor-pointer rounded-lg bg-[#7D9A38] shadow-sm">
+                <span class="text-lg font-semibold text-[#FFF8F0]">{{ buttonText }}</span>
             </button>
         </div>
     </section>

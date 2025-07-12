@@ -1,16 +1,18 @@
 <div class="w-full flex flex-col gap-4 px-6 py-4 bg-[#DDB892]">
-  <!-- Cabeçalho -->
+  
   <div class="flex justify-between items-center flex-wrap gap-4">
     <div class="flex flex-wrap items-center gap-4">
-      <h2 class="text-2xl font-bold text-[#6F4E37]">{{ title }}</h2>
+      <h2 class="text-4xl font-bold text-[#2E2E2E]">{{ title }}</h2>
 
-      <input
-        type="text"
-        [(ngModel)]="search"
-        (input)="onSearch()"
-        placeholder="Pesquisar..."
-        class="bg-[#FFF8F0] text-black border border-black px-3 py-2 rounded-md w-64"
-      />
+      @if (hasSearch) {
+        <app-input
+          [formControl]="search"
+          inputName="search"
+          type="text"
+          placeholder="Pesquisar..."
+        />
+        <button (click)="onSearch()" class="rounded-full w-8 h-8 active:bg-blue-900 hover:bg-blue-800 bg-blue-600 cursor-pointer">P</button>
+    }
 
       <button
         class="bg-[#7D9A38] text-white px-4 py-2 rounded-md hover:bg-[#6a8a2d] transition"
@@ -21,14 +23,14 @@
     </div>
   </div>
 
-  <!-- Tabela -->
+  
   <div class="overflow-x-auto rounded-md border border-gray-300 bg-white">
     <p-table
       [value]="filteredData"
       [columns]="columns"
       class="p-datatable-sm custom-table"
     >
-      <!-- Cabeçalho -->
+      
       <ng-template pTemplate="header" let-columns>
         <tr class="bg-white text-gray-800 border-b border-gray-200">
           @for (col of columns; track col.field) {
@@ -40,20 +42,19 @@
         </tr>
       </ng-template>
 
-      <!-- Corpo da Tabela -->
       <ng-template pTemplate="body" let-row let-columns="columns">
         <tr
           class="bg-white text-gray-800 border-b border-gray-100 hover:bg-gray-50"
         >
           @for (col of columns; track col.field) {
             <td class="px-4 py-3">
-              <!-- Estilização condicional para campo 'role' -->
+              
               @if (col.field === 'role') {
                 <span
                   [ngClass]="{
-                    'bg-[#7D9A38] text-white px-3 py-1 rounded-md font-semibold': row[col.field] === 'ADMIN',
-                    'bg-[#C1A57B] text-white px-3 py-1 rounded-md font-semibold': row[col.field] === 'CLIENT'
-                  }"
+                    'bg-[#5F0F40]': row[col.field] === 'ADMIN',
+                    'bg-[#7D9A38]': row[col.field] === 'CLIENT'
+                  }" class="text-white px-6 py-2 rounded-md font-semibold"
                 >
                   {{ row[col.field] }}
                 </span>
@@ -62,8 +63,7 @@
               }
             </td>
           }
-
-          <!-- Ações -->
+          
           <td class="px-4 py-3">
             <div class="flex gap-4">
               <button

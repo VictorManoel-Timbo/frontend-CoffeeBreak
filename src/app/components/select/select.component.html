@@ -5,6 +5,8 @@
     [placeholder]="placeholder"
     optionLabel="label"
     optionValue="value"
+    [(ngModel)]="value"
+    (onChange)="onInput($event)"
     class="bg-white! text-[#2E2E2E] mt-1 w-[90%] lg:w-full h-9 lg:h-10 rounded-lg! px-3"
   />
 </div>

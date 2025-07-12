@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
 import { AdminGuard } from './guards/admin.guard';
+import { UpdateComponent } from './pages/admin/users/update/update.component';
 
 export const routes: Routes = [
     {
@@ -37,11 +38,25 @@ export const routes: Routes = [
                     { path: '', redirectTo: 'users', pathMatch: 'full' },
                     {
                         path: 'users',
+                        loadComponent: () => import('./pages/admin/users/users.component').then(m => m.UsersComponent),
+                        data: {
+                            hasNavBar: true
+                        },
+                    },
+                    {
+                        path: 'users/register',
                         loadComponent: () => import('./pages/admin/users/register/register.component').then(m => m.RegisterComponent),
                         data: {
                             hasNavBar: false
                         }
                     },
+                    {
+                        path: 'users/update/:id',
+                        loadComponent: () => import('./pages/admin/users/update/update.component').then(m => UpdateComponent),
+                        data: {
+                            hasNavBar: false
+                        }
+                    }
                     /*{
                         path: 'categories'
                     },

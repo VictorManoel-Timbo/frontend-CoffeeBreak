@@ -27,8 +27,8 @@ export class StockService {
             });
     }
 
-    getStocksOrdered(): void {
-        this._stocks.getStocksOrdered().pipe(take(1))
+    getStocksOrdered(direction: string): void {
+        this._stocks.getStocksOrdered(direction).pipe(take(1))
             .subscribe({
                 next: (response) => {
                     this.stocks$.next(response);

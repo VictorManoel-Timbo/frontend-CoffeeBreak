@@ -1,10 +1,10 @@
 <main class="w-full flex flex-col gap-3 py-4">
     <div class="flex items-center">
-        <ng-icon routerLink="/dashboard/admin" class="cursor-pointer" color="black" size="24" name="featherArrowLeft"></ng-icon>
+        <ng-icon routerLink="/dashboard/admin" class="cursor-pointer" size="24" name="featherArrowLeft"></ng-icon>
     </div>
     <app-form-layout 
-        title="Cadastrar usuário" 
-        buttonText="Cadastrar"
+        title="Atualizar usuário" 
+        buttonText="Atualizar"
         [disabledButton]="!registerForm.valid"
         (submit)="submit()">
         <form [formGroup]="registerForm" class="flex flex-row grow items-center justify-around">
@@ -39,7 +39,7 @@
                     formControlName="password"
                     inputName="password"
                     type="password"
-                    label="Senha"
+                    label="Nova senha"
                 ></app-input>
                 <app-select 
                     formControlName="role"

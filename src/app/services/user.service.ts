@@ -13,8 +13,10 @@ export class UserService {
     ) { }
 
     private users$: Subject<any> = new Subject<any>();
+    private update$: Subject<any> = new Subject<any>();
 
     users: Observable<any> = this.users$.asObservable();
+    updateUser: Observable<any> = this.update$.asObservable();
 
     getAll(): void {
         this._users.getAll().pipe(take(1))
@@ -32,10 +34,10 @@ export class UserService {
         this._users.getOrderCount().pipe(take(1))
             .subscribe({
                 next: (response) => {
-                    this.users$.next(response);
+                    this.update$.next(response);
                 },
                 error: (err) => {
-                    this.users$.error(err);
+                    this.update$.error(err);
                 }
             });
     }
@@ -100,14 +102,14 @@ export class UserService {
             });
     }
 
-    update(user: User): void {
-        this._users.update(user).pipe(take(1))
+    update(user: User, id: number): void {
+        this._users.update(user, id).pipe(take(1))
             .subscribe({
                 next: (response) => {
-                    this.users$.next(response);
+                    this.update$.next(response);
                 },
                 error: (err) => {
-                    this.users$.error(err);
+                    this.update$.error(err);
                 }
             });
     }
