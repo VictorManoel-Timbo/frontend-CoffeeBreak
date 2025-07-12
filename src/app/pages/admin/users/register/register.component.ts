@@ -62,6 +62,10 @@ export class RegisterComponent {
             country: this.registerForm.value.country,
             role: this.registerForm.value.role
         }
+        this.insert(user);
+    }
+
+    insert(user: User): void {
         this.userService.users.subscribe({
             next: () => {
                 this.toastr.success('Cadastro de usuário feito com sucesso');
@@ -70,6 +74,7 @@ export class RegisterComponent {
             error: () => {
                 this.toastr.error('Não foi possível cadastrar usuário');
             }
-        })
+        });
+        this.userService.insert(user);
     }
 }

@@ -1,7 +1,35 @@
 /* You can add global styles to this file, and also import other style files */
 @import "tailwindcss";
 @import 'ngx-toastr/toastr';
+@tailwind utilities;
 
-html , body {
+@layer utilities {
+    @media (min-height: 1080px) {
+        .h-tall\:card-xl {
+            @apply h-[648px];
+        }
+    }
+
+    @media (max-height: 1080px) {
+        .h-lg\:card-lg {
+            @apply h-[500px];
+        }
+    }
+
+    @media (max-height: 800px) {
+        .h-md\:card-md {
+            @apply h-[450px];
+        }
+    }
+
+    @media (max-height: 700px) {
+        .h-short\:card-sm {
+            @apply h-[400px];
+        }
+    }
+}
+
+html,
+body {
     background-color: #fff8f0;
 }

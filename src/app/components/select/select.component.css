@@ -1,0 +1,9 @@
+:host ::ng-deep .p-select .p-select-overlay,
+:host ::ng-deep .p-select .p-select-label {
+  color: #2e2e2e;
+  background-color: #ffffff;
+}
+
+:host ::ng-deep .p-select .p-select-overlay .p-select-option {
+    color: #2e2e2e;
+}
