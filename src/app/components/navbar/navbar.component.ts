@@ -13,7 +13,7 @@ export class NavBarComponent {
     routes: any[] = [
         { name: 'Usuários', path: 'admin/users' },
         { name: 'Pedidos', path: '../orders' },
-        { name: 'Categorias', path: '../categories' },
+        { name: 'Categorias', path: 'admin/categories' },
         { name: 'Produtos', path: '../products' },
         { name: 'Estoques', path: '../stocks' },
         { name: 'Ingredientes', path: '../ingredients' },

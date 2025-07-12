@@ -1,0 +1,40 @@
+<main class="w-full flex flex-col gap-3 py-4">
+  <div class="flex items-center">
+    <ng-icon routerLink="/dashboard" class="cursor-pointer" size="24" name="featherArrowLeft" color="black"></ng-icon>
+  </div>
+
+  <app-form-layout 
+    title="Atualizar categoria" 
+    buttonText="Atualizar"
+    (submit)="submit()"
+    [disabledButton]="!registerForm.valid"
+  >
+    <form [formGroup]="registerForm" class="flex flex-row grow items-center justify-around">
+      <section class="flex flex-col h-full justify-evenly w-1/2">
+        <app-input
+          formControlName="name"
+          inputName="name"
+          type="text"
+          label="Nome da categoria"
+        ></app-input>
+
+        <app-input
+          formControlName="imageUrl"
+          inputName="imageUrl"
+          type="text"
+          label="URL da imagem"
+        ></app-input>
+
+        <div class="flex flex-col gap-1">
+          <label for="description" class="font-medium">Descrição</label>
+          <textarea
+            id="description"
+            formControlName="description"
+            class="bg-white text-[#7D7D7D] mt-1 w-full h-32 rounded-md px-3 py-2 ring ring-offset-0 focus:outline-none focus:ring-0 focus:ring-offset-1 focus:ring-offset-[#7D9A38]"
+            placeholder="Digite a descrição da categoria..."
+          ></textarea>
+        </div>
+      </section>
+    </form>
+  </app-form-layout>
+</main>

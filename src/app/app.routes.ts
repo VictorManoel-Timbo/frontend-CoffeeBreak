@@ -56,10 +56,28 @@ export const routes: Routes = [
                         data: {
                             hasNavBar: false
                         }
-                    }
-                    /*{
-                        path: 'categories'
                     },
+                    {
+                        path: 'categories',
+                        loadComponent: () => import('./pages/admin/categories/categories.component').then(m => m.CategoriesComponent),         
+                        data: {
+                            hasNavBar: true
+                        }
+                    },
+                    {
+                        path: 'categories/register',
+                        loadComponent: () => import('./pages/admin/categories/register/register.component').then(m => m.RegisterCategoryComponent),
+                        data: {
+                            hasNavBar: false
+                        }
+                    },
+                    {
+                        path: 'categories/update/:id',
+                        loadComponent: () => import('./pages/admin/categories/update/update.component').then(m => m.UpdateCategoryComponent),
+                        data: {
+                            hasNavBar: false
+                        }
+                    }/*,
                     {
                         path: 'orders'
                     },

@@ -1,0 +1,10 @@
+<main>
+  <app-table
+    title="Categorias"
+    [columns]="columns"
+    [data]="data"
+    [hasSearch]="true"
+    (delete)="delete($event)"
+    (search)="search($event)"
+  ></app-table>
+</main>
