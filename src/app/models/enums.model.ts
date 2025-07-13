@@ -39,3 +39,8 @@ export enum IngredientType {
   LIQUID = 'LIQUID',
   PERISHABLE = 'PERISHABLE'
 }
+
+export enum SortDirection {
+  ASC = 'asc',
+  DESC = 'desc'
+}

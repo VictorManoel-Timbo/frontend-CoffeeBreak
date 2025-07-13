@@ -1,0 +1,27 @@
+<main>
+  <div class="flex justify-between items-center px-4 mt-3">
+    <div class="flex gap-4 items-center flex justify-between items-center">
+      <app-select
+        inputName="direction"
+        type="SortDirection"
+        [(ngModel)]="sortDirection"
+        placeholder="Ordene por capacidade"
+      ></app-select>
+
+      <button
+        (click)="orderByCapacity()"
+        class="cursor-pointer bg-[#7D9A38] text-white px-4 py-2 rounded"
+      >
+        Aplicar
+      </button>
+    </div>
+  </div>
+  <app-table
+    title="Estoques"
+    [hasSearch]="false"
+    [columns]="columns"
+    [data]="data"
+    (delete)="delete($event)"
+  >
+</app-table>
+</main>
