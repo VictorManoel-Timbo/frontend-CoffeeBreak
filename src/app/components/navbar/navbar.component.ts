@@ -15,7 +15,7 @@ export class NavBarComponent {
         { name: 'Pedidos', path: '../orders' },
         { name: 'Categorias', path: 'admin/categories' },
         { name: 'Produtos', path: '../products' },
-        { name: 'Estoques', path: '../stocks' },
+        { name: 'Estoques', path: 'admin/stocks' },
         { name: 'Ingredientes', path: '../ingredients' },
         { name: 'Pagamentos', path: '../payments' }
     ];

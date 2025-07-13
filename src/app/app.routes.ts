@@ -83,10 +83,28 @@ export const routes: Routes = [
                     },
                     {
                         path: 'products'
+                    }*/,
+                    {
+                        path: 'stocks',
+                        loadComponent: () => import('./pages/admin/stocks/stocks.component').then(m => m.StocksComponent),         
+                        data: {
+                            hasNavBar: true
+                        }
                     },
                     {
-                        path: 'stocks'
+                        path: 'stocks/register',
+                        loadComponent: () => import('./pages/admin/stocks/register/register.component').then(m => m.RegisterComponent),
+                        data: {
+                            hasNavBar: false
+                        }
                     },
+                    {
+                        path: 'stocks/update/:id',
+                        loadComponent: () => import('./pages/admin/stocks/update/update.component').then(m => m.UpdateComponent),
+                        data: {
+                            hasNavBar: false
+                        }
+                    }/*
                     {
                         path: 'ingredients'
                     },

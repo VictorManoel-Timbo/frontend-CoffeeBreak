@@ -1,0 +1,55 @@
+<main class="w-full flex flex-col gap-3 py-4">
+  <div class="flex items-center">
+    <ng-icon
+      routerLink="/dashboard/admin/stocks"
+      class="cursor-pointer"
+      size="24"
+      name="featherArrowLeft"
+      color="black"
+    ></ng-icon>
+  </div>
+  <app-form-layout
+    title="Atualizar estoque"
+    buttonText="Atualizar"
+    [disabledButton]="!registerForm.valid"
+    (submit)="submit()"
+  >
+    <form
+      [formGroup]="registerForm"
+      class="flex flex-row grow items-center justify-around"
+    >
+      <section class="flex flex-col h-full justify-evenly w-1/2 pr-4 gap-4">
+        <app-select
+          formControlName="type"
+          inputName="type"
+          type="StockType"
+          label="Tipo de estoque"
+        ></app-select>
+
+        <app-input
+          formControlName="capacity"
+          inputName="capacity"
+          type="text"
+          label="Capacidade"
+        ></app-input>
+
+        <app-input
+          formControlName="temperature"
+          inputName="temperature"
+          type="text"
+          label="Temperatura"
+        ></app-input>
+      </section>
+
+      <section class="flex flex-col w-1/2 pl-4 gap-1">
+        <label for="description" class="font-medium">Descrição</label>
+        <textarea
+          id="description"
+          formControlName="description"
+          class="bg-white text-[#7D7D7D] mt-1 w-full h-48 rounded-md px-3 py-2 ring ring-offset-0 focus:outline-none focus:ring-0 focus:ring-offset-1 focus:ring-offset-[#7D9A38]"
+          placeholder="Digite a descrição do estoque..."
+        ></textarea>
+      </section>
+    </form>
+  </app-form-layout>
+</main>
