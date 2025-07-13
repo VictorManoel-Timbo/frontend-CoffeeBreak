@@ -29,8 +29,8 @@ export class IngredientRestService {
         return this.http.post<Ingredient>(`${this.baseUrl}`, ingredient);
     }
 
-    update(ingredient: Ingredient): Observable<Ingredient> {
-        return this.http.put<Ingredient>(`${this.baseUrl}/${ingredient.id}`, ingredient);
+    update(ingredient: Ingredient,id:number): Observable<Ingredient> {
+        return this.http.put<Ingredient>(`${this.baseUrl}/${id}`, ingredient);
     }
 
     delete(id: number): Observable<void> {

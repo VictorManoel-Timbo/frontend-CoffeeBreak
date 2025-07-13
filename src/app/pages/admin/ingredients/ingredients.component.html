@@ -1,0 +1,40 @@
+<main>
+  <app-table
+    title="Ingredientes"
+    [hasSearch]="true"
+    [columns]="columns"
+    [data]="data"
+    (delete)="delete($event)"
+    (search)="search($event)"
+  ></app-table>
+
+  <section class="ml-6 flex flex-col">
+    <div class="mt-4 flex flex-row gap-2">
+      <button 
+        (click)="getMoreUsed()" 
+        class="cursor-pointer bg-[#7D9A38] text-white px-4 py-2 rounded">
+        Contar Ingredientes
+      </button>
+
+      @if (hasMoreUsed) {
+        <button 
+          (click)="hasMoreUsed = false" 
+          class="cursor-pointer bg-transparent active:bg-white border-2 border-[#7D7D7D] text-[#2E2E2E] px-4 py-2 rounded-full">
+          X
+        </button>
+      }
+    </div>
+
+    <div class="mt-4 bg-white w-[10%] rounded text-black">
+      @if (hasMoreUsed) {
+        @for (ingredient of totalIngredients; track ingredient.id) {
+          <div class="m-2 mt-3 items-center grid grid-cols-2">
+            <span class="text-lg text-center font-medium">{{ ingredient.name }}</span>
+            <span class="text-lg text-center font-medium">{{ ingredient.productCount }}</span>
+          </div>
+          <div class="bg-[#6F4E37] h-0.5"></div>
+        }
+      }
+    </div>
+  </section>  
+</main> 
