@@ -25,8 +25,8 @@ export class CategoryRestService {
         return this.http.post<Category>(`${this.baseUrl}`, category);
     }
 
-    update(category: Category): Observable<Category> {
-        return this.http.put<Category>(`${this.baseUrl}/${category.id}`, category);
+    update(category: Category, id: number): Observable<Category> {
+        return this.http.put<Category>(`${this.baseUrl}/${id}`, category);
     }
 
     delete(id: number): Observable<void> {

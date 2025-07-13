@@ -63,8 +63,8 @@ export class CategoryService {
             });
     }
 
-    update(category: Category): void {
-        this._categories.update(category).pipe(take(1))
+    update(category: Category, id: number): void {
+        this._categories.update(category, id).pipe(take(1))
             .subscribe({
                 next: (response) => {
                     this.categories$.next(response);
