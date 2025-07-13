@@ -74,8 +74,6 @@ export class UsersComponent implements OnInit {
 
     search(event: Event): void {
         const name: any = event;
-
-        console.log(name);
         this.userService.users.subscribe({
             next: (response) => {
                 this.data = response;

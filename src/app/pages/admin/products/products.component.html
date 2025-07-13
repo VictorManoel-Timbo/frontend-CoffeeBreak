@@ -1,0 +1,43 @@
+<main>
+    <app-table
+        title="Produtos"
+        [hasSearch]="true"
+        [columns]="columns"
+        [data]="data"
+        (delete)="delete($event)"
+        (search)="search($event)"
+    ></app-table>
+    <div class="mt-4">
+        <div class="flex flex-row gap-2">
+            <button (click)="getSales()" 
+                class="cursor-pointer bg-[#7D9A38] text-white px-4 py-2 rounded" >
+                Mais vendidos
+            </button>
+            @if (hasSales) {
+            <button (click)="hasSales=false" 
+                class="cursor-pointer bg-transparent active:bg-white border-2 border-[#7D7D7D] text-[#2E2E2E] px-4 py-2 rounded-full" >
+                X
+            </button>
+            }
+            <button (click)="getPricesGreater()" 
+                class="cursor-pointer bg-[#7D9A38] text-white px-4 py-2 rounded" >
+                Maiores preços
+            </button>
+            <button (click)="getCaloriesGreater()" 
+                class="cursor-pointer bg-[#7D9A38] text-white px-4 py-2 rounded" >
+                Mais calorias
+            </button>
+        </div>
+        <div class="bg-white w-[20%] rounded text-[#2E2E2E]">
+            @if (hasSales) {
+                @for (product of totalSales; track product.productId) {
+                    <div class="m-2 mt-3 items-center grid grid-cols-2">
+                        <span class="text-lg text-center font-medium">{{ product.name }}</span>
+                        <span class="text-lg text-center font-medium">{{ product.totalSold }}</span>
+                    </div>
+                    <div class="bg-[#6F4E37] h-0.5"></div>
+                }
+            }
+        </div>
+    </div>
+</main>

@@ -1,13 +1,16 @@
+import { Category } from "./category.model";
 import { ProductAvailable } from "./enums.model";
+import { ProductStockIngredient } from "./product-stock-ingredient.model";
 
 export class Product {
     constructor(
         public id?: number,
-        public categoryId?: string, // FK
+        public category?: Category,
         public price?: number,
         public name?: string,
-        public avalible?: ProductAvailable, // ENUM
+        public available?: ProductAvailable, 
         public imageUrl?: string,
-        public calories?: number
+        public calories?: number,
+        public composition?: ProductStockIngredient[]
     ){}
 }

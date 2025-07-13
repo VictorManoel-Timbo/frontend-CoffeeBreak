@@ -1,0 +1,82 @@
+<main class="w-full flex flex-col gap-3 py-4">
+  <div class="flex items-center">
+    <ng-icon routerLink="/dashboard/admin/products" class="cursor-pointer" color="black" size="24"
+      name="featherArrowLeft" />
+  </div>
+  <app-form-layout
+    title="Cadastrar Produtos"
+    buttonText="Cadastrar"
+    [disabledButton]="form.invalid"
+    (submit)="submit()"
+  >
+    <button type="button" class="mb-4" (click)="addProduct()">Adicionar Produto</button>
+  
+    @for (product of products.controls; let i = $index; track product) {
+      <form [formGroup]="asFormGroup(product)" class="border-b pb-4 mb-4">
+        <section class="grid grid-cols-2 gap-3">
+          <app-input formControlName="name" inputName="name" label="Nome" type="text" />
+          <app-input formControlName="price" inputName="price" label="Preço" type="number" />
+          <app-input formControlName="imageUrl" inputName="imageUrl" label="URL da imagem" type="text" />
+          <app-input formControlName="calories" inputName="calories" label="Calorias" type="number" />
+          <app-select formControlName="available" inputName="available" type="ProductAvailable" label="Disponível" />
+          <p-select
+            [options]="optionsCategory"
+            formControlName="categoryId"
+            optionLabel="label"
+            optionValue="value"
+            placeholder="Categoria"
+            class="w-full"
+          />
+  
+          <div class="col-span-2">
+            <label class="font-semibold">Composição</label>
+            @for (comp of getComposition(i).controls; let j = $index; track comp) {
+              <div [formGroup]="asCompositionGroup(comp)" class="grid grid-cols-3 gap-3 border rounded p-3 mt-2">
+                <p-select 
+                  [options]="optionsStock" 
+                  optionLabel="label"
+                  optionValue="value" 
+                  formControlName="stockId" 
+                  placeholder="Estoque"
+                  ></p-select>
+                <p-select 
+                  [options]="optionsIngredients" 
+                  optionLabel="label"
+                  optionValue="value" 
+                  formControlName="ingredientId" 
+                  placeholder="Ingrediente"
+                  ></p-select>
+                <app-input 
+                  formControlName="quantityRequired" 
+                  inputName="quantityRequired" 
+                  label="Qtd Requerida" 
+                  type="number" />
+                <app-input 
+                  formControlName="useType" 
+                  inputName="useType" 
+                  label="Tipo de Uso" 
+                  type="text" />
+                <app-input 
+                  formControlName="replaceable" 
+                  inputName="replaceable" 
+                  label="Substituível" 
+                  type="text" />
+                <app-input 
+                  formControlName="reusable" 
+                  inputName="reusable" 
+                  label="Reutilizável" 
+                  type="text" />
+  
+                <button type="button" class="text-red-600" (click)="removeComposition(i, j)">Remover Composição</button>
+              </div>
+            }
+  
+            <button type="button" class="mt-2" (click)="addComposition(i)">+ Composição</button>
+          </div>
+        </section>
+  
+        <button type="button" class="mt-2 text-red-700" (click)="removeProduct(i)">Remover Produto</button>
+      </form>
+    }
+  </app-form-layout>
+</main>

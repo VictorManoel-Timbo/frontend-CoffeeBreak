@@ -14,7 +14,7 @@ export class LocalStorageUtil {
     try {
       return JSON.parse(item);
     } catch {
-      return item; // fallback para string simples
+      return item; 
     }
   }
 

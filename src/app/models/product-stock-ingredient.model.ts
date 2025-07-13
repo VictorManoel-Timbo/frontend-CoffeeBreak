@@ -1,6 +1,5 @@
 export class ProductStockIngredient{
     constructor(
-        public productId?: number,
         public stockId?: number,
         public ingredientId?: number,
         public quantityRequired?: number,

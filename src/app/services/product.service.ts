@@ -12,8 +12,9 @@ export class ProductService {
     ) { }
 
     private products$: Subject<any> = new Subject<any>();
-
+    private prods$: Subject<any> = new Subject<any>();
     products: Observable<any> = this.products$.asObservable();
+    prods: Observable<any> = this.prods$.asObservable();
 
     getAll(): void {
         this._products.getAll().pipe(take(1))
@@ -79,10 +80,10 @@ export class ProductService {
         this._products.getSales().pipe(take(1))
             .subscribe({
                 next: (response) => {
-                    this.products$.next(response);
+                    this.prods$.next(response);
                 },
                 error: (err) => {
-                    this.products$.error(err);
+                    this.prods$.error(err);
                 }
             });
     }
@@ -111,8 +112,8 @@ export class ProductService {
             });
     }
 
-    update(product: Product): void {
-        this._products.update(product).pipe(take(1))
+    update(product: Product, id: number): void {
+        this._products.update(product, id).pipe(take(1))
             .subscribe({
                 next: (response) => {
                     this.products$.next(response);
