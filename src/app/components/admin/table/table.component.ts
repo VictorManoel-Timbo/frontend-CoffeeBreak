@@ -1,53 +1,57 @@
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TableModule } from 'primeng/table';
-import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { InputComponent } from "../../input/input.component";
 
 @Component({
   selector: 'app-table',
   standalone: true,
-  imports: [CommonModule, TableModule, FormsModule],
+  imports: [CommonModule, TableModule, FormsModule, InputComponent, ReactiveFormsModule],
   templateUrl: './table.component.html',
   styleUrl: './table.component.css'
 })
 export class TableComponent implements OnInit {
   @Input() title!: string;
-  @Input() createRoute!: string;
-  @Input() updateRoute!: string;
   @Input() columns: { field: string; header: string }[] = [];
   @Input() data: any[] = [];
+  @Input() hasSearch: boolean = true;
 
   @Output() delete = new EventEmitter<any>();
+  @Output("search") searchText = new EventEmitter<any>();
 
   filteredData: any[] = [];
-  search: string = '';
+  search = new FormControl<string>('', [Validators.required, Validators.minLength(3)]);
+  url: string = '';
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private activeRoute: ActivatedRoute
+  ) {
+    this.url = this.activeRoute.snapshot.url.join('/');
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['data'] && changes['data'].currentValue) {
+      this.filteredData = changes['data'].currentValue; 
+    }
+  }
 
   ngOnInit(): void {
     this.filteredData = this.data;
   }
 
   onSearch(): void {
-    const term = this.search.toLowerCase();
-    if (term.length >= 3) {
-      this.filteredData = this.data.filter(item =>
-        Object.values(item).some(value =>
-          String(value).toLowerCase().includes(term)
-        )
-      );
-    } else {
-      this.filteredData = this.data;
-    }
+    this.searchText.emit(this.search.value);
   }
 
-  onEdit(id: any): void {
-    this.router.navigate([`${this.updateRoute}/${id}`]);
+  onEdit(id: number): void {
+    this.router.navigate(['dashboard','admin', this.url, 'update', id]);
   }
 
   onCreate(): void {
-    this.router.navigate([this.createRoute]);
+    this.router.navigate(['dashboard','admin', this.url, 'register']);
   }
 
   onDelete(item: any): void {

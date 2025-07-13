@@ -10,6 +10,7 @@ import { User } from "../../../../models/user.model";
 import { UserRole } from "../../../../models/enums.model";
 import { SelectComponent } from "../../../../components/select/select.component";
 import { UserService } from "../../../../services/user.service";
+import { take } from "rxjs/operators";
 
 interface RegisterForm {
     name: FormControl,
@@ -49,7 +50,7 @@ export class RegisterComponent {
             phone: new FormControl<string>('', [Validators.pattern(/^\(?\d{2}\)?[\s-]?9\d{4}-?\d{4}$/)]),
             country: new FormControl<string>('',[Validators.minLength(3)]),
             password: new FormControl<string>('', [Validators.required, Validators.minLength(8)]),
-            role: new FormControl<UserRole>(UserRole.CLIENT,[Validators.required])
+            role: new FormControl<UserRole>(UserRole.CLIENT)
         });
     }
 
@@ -69,10 +70,11 @@ export class RegisterComponent {
         this.userService.users.subscribe({
             next: () => {
                 this.toastr.success('Cadastro de usuário feito com sucesso');
-                this.router.navigate(['dashboard']);
+                this.router.navigate(['dashboard', 'admin']);
             },
             error: () => {
                 this.toastr.error('Não foi possível cadastrar usuário');
+                this.router.navigate(['dashboard', 'admin']);
             }
         });
         this.userService.insert(user);
