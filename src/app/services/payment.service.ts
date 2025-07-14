@@ -51,8 +51,8 @@ export class Paymentservice {
             });
     }
 
-    update(payment: Payment): void {
-        this._payments.update(payment).pipe(take(1))
+    update(payment: Payment, id: number): void {
+        this._payments.update(payment, id).pipe(take(1))
             .subscribe({
                 next: (response) => {
                     this.payments$.next(response);
