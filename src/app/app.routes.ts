@@ -78,10 +78,28 @@ export const routes: Routes = [
                         data: {
                             hasNavBar: false
                         }
-                    },/*,
+                    },
                     {
-                        path: 'orders'
-                    },*/
+                        path: 'orders',
+                        loadComponent: () => import('./pages/admin/orders/orders.component').then(m => m.OrdersComponent),
+                        data: {
+                            hasNavBar: true
+                        }
+                    },
+                    {
+                        path: 'orders/register',
+                        loadComponent: () => import('./pages/admin/orders/register/register.component').then(m => m.RegisterOrderComponent),
+                        data: {
+                            hasNavBar: false
+                        }
+                    },
+                    {
+                        path: 'orders/update/:id',
+                        loadComponent: () => import('./pages/admin/orders/update/update.component').then(m => m.UpdateOrderComponent),
+                        data: {
+                            hasNavBar: false
+                        },
+                    },
                     {
                         path: 'products',
                         loadComponent: () => import('./pages/admin/products/products.component').then(m => m.ProductsComponent),
@@ -92,9 +110,6 @@ export const routes: Routes = [
                     {
                         path: 'products/register',
                         loadComponent: () => import('./pages/admin/products/register/register.component').then(m => m.RegisterProductComponent),
-                        data: {
-                            hasNavBar: false
-                        }
                     },
                     {
                         path: 'products/update/:id',
@@ -143,10 +158,7 @@ export const routes: Routes = [
                     {
                         path: 'ingredients/update/:id',
                         loadComponent: () => import('./pages/admin/ingredients/update/update.component').then(m => m.UpdateComponent),
-                    }/*
-                    {
-                        path: 'ingredients'
-                    }*/,
+                    },
                     {
                         path: 'payments',
                         loadComponent: () => import('./pages/admin/payments/payments.component').then(m => m.PaymentsComponent),         

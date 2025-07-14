@@ -1,0 +1,9 @@
+<main>
+  <app-table
+    title="Pedidos"
+    [columns]="columns"
+    [data]="data"
+    [hasSearch]="false"
+    (delete)="delete($event)"
+  ></app-table>
+</main>

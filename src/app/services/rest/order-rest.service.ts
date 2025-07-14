@@ -21,8 +21,8 @@ export class OrderRestService {
         return this.http.post<Order>(`${this.baseUrl}`, order);
     }
 
-    update(order: Order): Observable<Order> {
-        return this.http.put<Order>(`${this.baseUrl}/${order.id}`, order);
+    update(order: Order, id: number): Observable<Order> {
+        return this.http.put<Order>(`${this.baseUrl}/${id}`, order);
     }
 
     delete(id: number): Observable<void> {

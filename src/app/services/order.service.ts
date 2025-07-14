@@ -51,8 +51,8 @@ export class OrderService {
             });
     }
 
-    update(order: Order): void {
-        this._orders.update(order).pipe(take(1))
+    update(order: Order, id: number): void {
+        this._orders.update(order, id).pipe(take(1))
             .subscribe({
                 next: (response) => {
                     this.orders$.next(response);
