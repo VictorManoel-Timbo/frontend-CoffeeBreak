@@ -1,0 +1,39 @@
+<main class="w-full flex flex-col gap-3 py-4">
+  <div class="flex items-center">
+    <ng-icon
+      routerLink="/dashboard/admin/payments"
+      class="cursor-pointer"
+      size="24"
+      name="featherArrowLeft"
+      color="black"
+    ></ng-icon>
+  </div>
+
+  <app-form-layout
+    title="Atualizar pagamento"
+    buttonText="Atualizar"
+    (submit)="submit()"
+    [disabledButton]="!registerForm.valid"
+  >
+    <form
+      [formGroup]="registerForm"
+      class="flex flex-row grow items-center justify-around"
+    >
+      <section class="flex flex-col h-full justify-evenly w-1/2">
+        <app-select
+          formControlName="method"
+          inputName="method"
+          type="PaymentMethod"
+          label="Método de pagamento"
+        ></app-select>
+
+        <app-input
+          formControlName="installments"
+          inputName="installments"
+          type="text"
+          label="Parcelas"
+        ></app-input>
+      </section>
+    </form>
+  </app-form-layout>
+</main>

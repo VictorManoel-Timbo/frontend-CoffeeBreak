@@ -21,8 +21,8 @@ export class PaymentRestService {
         return this.http.post<Payment>(`${this.baseUrl}`, payment);
     }
 
-    update(payment: Payment): Observable<Payment> {
-        return this.http.put<Payment>(`${this.baseUrl}/${payment.id}`, payment);
+    update(payment: Payment, id: number): Observable<Payment> {
+        return this.http.put<Payment>(`${this.baseUrl}/${id}`, payment);
     }
 
     delete(id: number): Observable<void> {

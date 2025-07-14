@@ -124,13 +124,31 @@ export const routes: Routes = [
                     {
                         path: 'ingredients/update/:id',
                         loadComponent: () => import('./pages/admin/ingredients/update/update.component').then(m => m.UpdateComponent),
+                    }/*
+                    {
+                        path: 'ingredients'
+                    }*/,
+                    {
+                        path: 'payments',
+                        loadComponent: () => import('./pages/admin/payments/payments.component').then(m => m.PaymentsComponent),         
+                        data: {
+                            hasNavBar: true
+                        }
+                    },
+                    {
+                        path: 'payments/register',
+                        loadComponent: () => import('./pages/admin/payments/register/register.component').then(m => m.RegisterComponent),
+                        data: {
+                            hasNavBar: false
+                        }
+                    },
+                    {
+                        path: 'payments/update/:id',
+                        loadComponent: () => import('./pages/admin/payments/update/update.component').then(m => m.UpdateComponent),
                         data: {
                             hasNavBar: false
                         }
                     }
-                  //  {
-                   //     path: 'payments'
-                  //  }
                 ]
             },
             {
