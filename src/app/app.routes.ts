@@ -59,7 +59,7 @@ export const routes: Routes = [
                     },
                     {
                         path: 'categories',
-                        loadComponent: () => import('./pages/admin/categories/categories.component').then(m => m.CategoriesComponent),         
+                        loadComponent: () => import('./pages/admin/categories/categories.component').then(m => m.CategoriesComponent),
                         data: {
                             hasNavBar: true
                         }
@@ -86,7 +86,7 @@ export const routes: Routes = [
                     }*/,
                     {
                         path: 'stocks',
-                        loadComponent: () => import('./pages/admin/stocks/stocks.component').then(m => m.StocksComponent),         
+                        loadComponent: () => import('./pages/admin/stocks/stocks.component').then(m => m.StocksComponent),
                         data: {
                             hasNavBar: true
                         }
@@ -104,13 +104,33 @@ export const routes: Routes = [
                         data: {
                             hasNavBar: false
                         }
-                    }/*
-                    {
-                        path: 'ingredients'
                     },
                     {
-                        path: 'payments'
-                    }*/
+                        path: 'ingredients',
+                        loadComponent: () => import('./pages/admin/ingredients/ingredients.component').then(m => m.IngredientsComponent),
+                        data: {
+                            hasNavBar: true
+                        }
+
+                    },
+                    {
+                        path: 'ingredients/register',
+                        loadComponent: () => import('./pages/admin/ingredients/register/register.component').then(m => m.RegisterComponent),
+                        data: {
+                            hasNavBar: false
+                        }
+
+                    },
+                    {
+                        path: 'ingredients/update/:id',
+                        loadComponent: () => import('./pages/admin/ingredients/update/update.component').then(m => m.UpdateComponent),
+                        data: {
+                            hasNavBar: false
+                        }
+                    }
+                  //  {
+                   //     path: 'payments'
+                  //  }
                 ]
             },
             {

@@ -1,0 +1,83 @@
+<main class="w-full flex flex-col gap-3 py-4">
+  <div class="flex items-center">
+    <ng-icon routerLink="/dashboard/admin/ingredients" class="cursor-pointer" size="24" name="featherArrowLeft" color="black"></ng-icon>
+  </div>
+
+  <app-form-layout
+    title="Atualizar ingrediente"
+    buttonText="Atualizar"
+    [disabledButton]="!registerForm.valid"
+    (submit)="submit()"
+  >
+    <div class="space-y-6 px-2 md:px-6">
+      <form 
+        [formGroup]="registerForm" 
+        (ngSubmit)="submit()" 
+        class="grid grid-cols-1 md:grid-cols-2 gap-6 pb-6"
+      >
+        <!-- Coluna esquerda -->
+        <div class="flex flex-col gap-6">
+          <div class="flex flex-col gap-2">
+            <label class="font-medium text-sm text-gray-700">Nome</label>
+            <input
+              type="text"
+              formControlName="name"
+              placeholder="Nome do ingrediente"
+              class="bg-white border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+            />
+          </div>
+
+           <div class="flex flex-col gap-2">
+            <label class="font-medium text-sm text-gray-700">Tipo de uso</label>
+            <select formControlName="type"
+                class="bg-white border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all">
+                <option value="" disabled selected>Selecione o tipo</option>
+                <option value="POWDERED">POWDERED</option>
+                <option value="LIQUID">LIQUID</option>
+                <option value="PERISHABLE">PERISHABLE</option>
+            </select>
+        </div>
+
+          <div class="flex flex-col gap-2">
+            <label class="font-medium text-sm text-gray-700">Fornecedor</label>
+            <input
+              type="text"
+              formControlName="supplier"
+              placeholder="Fornecedor"
+              class="bg-white border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+            />
+          </div>
+        </div>
+
+        <!-- Coluna direita -->
+        <div class="flex flex-col gap-6">
+          <div class="flex flex-col gap-2">
+            <label class="font-medium text-sm text-gray-700">Quantidade mínima</label>
+            <input
+              type="number"
+              formControlName="minStock"
+              placeholder="0"
+              class="bg-white border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+            />
+          </div>
+
+          <div class="flex flex-col gap-2">
+            <label class="font-medium text-sm text-gray-700">Unidade de medida</label>
+            <select
+              formControlName="unitMeasure"
+              class="bg-white border border-gray-300 text-gray-700 rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all appearance-none"
+            >
+              <option value="" disabled selected>Selecione</option>
+              <option value="g">Gramas (g)</option>
+              <option value="kg">Quilogramas (kg)</option>
+              <option value="ml">Mililitros (ml)</option>
+              <option value="l">Litros (l)</option>
+              <option value="un">Unidades</option>
+            </select>
+          </div>
+        </div>
+      </form>
+    </div>
+  </app-form-layout>
+</main>
+

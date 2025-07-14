@@ -7,13 +7,19 @@ import { Ingredient } from "../models/ingredient.model";
     providedIn: 'root'
 })
 export class IngredientService {
+    updateMostUsedIngredients() {
+      throw new Error('Method not implemented.');
+    }
     constructor(
         private _ingredients: IngredientRestService
     ) { }
 
     private ingredients$: Subject<any> = new Subject<any>();
 
+    private ingredienT$ : Subject<any> = new Subject<any>();
+
     ingredients: Observable<any> = this.ingredients$.asObservable();
+    ingredienT: Observable<any> = this.ingredienT$.asObservable();
 
     getAll(): void {
         this._ingredients.getAll().pipe(take(1))
@@ -31,10 +37,10 @@ export class IngredientService {
         this._ingredients.getMoreUsed().pipe(take(1))
             .subscribe({
                 next: (response) => {
-                    this.ingredients$.next(response);
+                    this.ingredienT$.next(response);
                 },
                 error: (err) => {
-                    this.ingredients$.error(err);
+                    this.ingredienT$.error(err);
                 }
             });
     }
@@ -75,8 +81,8 @@ export class IngredientService {
             });
     }
 
-    update(ingredient: Ingredient): void {
-        this._ingredients.update(ingredient).pipe(take(1))
+    update(ingredient: Ingredient,id: number): void {
+        this._ingredients.update(ingredient,id).pipe(take(1))
             .subscribe({
                 next: (response) => {
                     this.ingredients$.next(response);
@@ -99,3 +105,5 @@ export class IngredientService {
             });
     }
 }
+
+
