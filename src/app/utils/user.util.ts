@@ -11,7 +11,7 @@ export class UserUtil {
     }
 
     getClientOptions(): Observable<{ label: string; value: number }[]> {
-        return this.service.users.pipe(
+        let clients = this.service.users.pipe(
             take(1),
             map((users: User[]) =>
                 users
@@ -22,6 +22,8 @@ export class UserUtil {
                     }))
             )
         );
+        this.service.getAll()
+        return clients
     }
 
 }

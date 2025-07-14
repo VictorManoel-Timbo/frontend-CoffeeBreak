@@ -1,0 +1,48 @@
+<main class="w-full flex flex-col gap-3 py-4">
+  <div class="flex items-center">
+    <ng-icon routerLink="/dashboard/admin/orders" class="cursor-pointer" color="black" size="24" name="featherArrowLeft" />
+  </div>
+
+  <app-form-layout
+    title="Atualizar Pedido"
+    buttonText="Atualizar"
+    [disabledButton]="form.invalid"
+    (submit)="submit()"
+  >
+    <form [formGroup]="form" class="flex flex-col gap-4">
+      <p-select
+        [options]="clients"
+        formControlName="clientId"
+        optionLabel="label"
+        optionValue="value"
+        placeholder="Cliente"
+        class="w-full"
+      />
+
+      <app-select formControlName="status" inputName="status" type="OrderStatus" label="Status do Pedido" />
+      <app-select formControlName="withdrawalMethod" inputName="withdrawalMethod" type="WithdrawalMethod" label="Retirada" />
+
+      <div>
+        <label class="font-semibold">Produtos</label>
+        @for (item of items.controls; let i = $index; track item) {
+          <div [formGroup]="asFormGroup(item)" class="grid grid-cols-2 gap-3 border p-3 my-2">
+            <p-select 
+              [options]="products" 
+              formControlName="productId" 
+              optionLabel="label" 
+              optionValue="value" 
+              placeholder="Produto" />
+
+            <app-input formControlName="quantity" inputName="quantity" type="number" label="Quantidade" />
+            <app-input formControlName="discount" inputName="discount" type="number" label="Desconto" />
+            <app-input formControlName="observation" inputName="observation" type="text" label="Observação" />
+
+            <button type="button" class="text-red-600" (click)="removeItem(i)">Remover Produto</button>
+          </div>
+        }
+
+        <button type="button" class="mt-2" (click)="addItem()">+ Produto</button>
+      </div>
+    </form>
+  </app-form-layout>
+</main>
