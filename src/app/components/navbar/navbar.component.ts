@@ -14,7 +14,7 @@ export class NavBarComponent {
         { name: 'Usuários', path: 'admin/users' },
         { name: 'Pedidos', path: '../orders' },
         { name: 'Categorias', path: 'admin/categories' },
-        { name: 'Produtos', path: '../products' },
+        { name: 'Produtos', path: 'admin/products' },
         { name: 'Estoques', path: 'admin/stocks' },
         { name: 'Ingredientes', path: 'admin/ingredients' },
         { name: 'Pagamentos', path: 'admin/payments' }

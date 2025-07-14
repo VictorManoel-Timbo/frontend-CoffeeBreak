@@ -1,0 +1,54 @@
+<main class="w-full flex flex-col gap-3 py-4">
+  <div class="flex items-center">
+    <ng-icon routerLink="/dashboard/admin/products" class="cursor-pointer" color="black" size="24"
+      name="featherArrowLeft" />
+  </div>
+
+  <app-form-layout title="Atualizar produto" buttonText="Atualizar" [disabledButton]="!productForm.valid"
+    (submit)="submit()">
+    <form [formGroup]="productForm" class="flex flex-col gap-4">
+
+      <section class="grid grid-cols-2 gap-4">
+        <app-input formControlName="name" inputName="name" type="text" label="Nome completo" />
+        <app-input formControlName="price" inputName="price" type="text" label="Preço" />
+        <app-input formControlName="calories" inputName="calories" type="text" label="Calorias" />
+        <app-input formControlName="imageUrl" inputName="imageUrl" type="text" label="Url da imagem" />
+
+        <app-select formControlName="available" inputName="available" type="ProductAvailable" label="Disponível" />
+
+      </section>
+
+      <section class="mt-6">
+        <div class="flex justify-between items-center mb-2">
+          <span class="text-xl font-bold">Composição</span>
+          <button type="button" (click)="addComposition()"
+            class="bg-green-600 text-white px-3 py-1 rounded">Adicionar</button>
+        </div>
+
+        @for (comp of compositionControls; let i = $index; track comp) {
+        <div class="border p-4 rounded mb-3" [formGroup]="comp">
+          <div class="grid grid-cols-3 gap-3">
+            <p-select [options]="optionsStock" formControlName="stockId" optionLabel="label" optionValue="value"
+              placeholder="Estoque"></p-select>
+
+            <p-select [options]="optionsIngredients" formControlName="ingredientId" optionLabel="label" optionValue="value"
+              placeholder="Ingrediente"></p-select>
+
+            <app-input formControlName="quantityRequired" inputName="quantityRequired" type="number"
+              label="Qtd. Requerida" />
+            <app-input formControlName="useType" inputName="useType" type="text" label="Tipo de uso" />
+            <app-input formControlName="replaceable" inputName="replaceable" type="text" label="Substituível" />
+            <app-input formControlName="reusable" inputName="reusable" type="text" label="Reutilizável" />
+          </div>
+
+          <div class="flex justify-end mt-2">
+            <button type="button" (click)="removeComposition(i)">
+              Remover
+            </button>>
+          </div>
+        </div>
+        }
+      </section>
+    </form>
+  </app-form-layout>
+</main>

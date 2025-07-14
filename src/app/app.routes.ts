@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
 import { AdminGuard } from './guards/admin.guard';
+import { UpdateProductComponent } from './pages/admin/products/update/update.component';
 import { UpdateComponent } from './pages/admin/users/update/update.component';
 
 export const routes: Routes = [
@@ -77,13 +78,31 @@ export const routes: Routes = [
                         data: {
                             hasNavBar: false
                         }
-                    }/*,
+                    },/*,
                     {
                         path: 'orders'
+                    },*/
+                    {
+                        path: 'products',
+                        loadComponent: () => import('./pages/admin/products/products.component').then(m => m.ProductsComponent),
+                        data: {
+                            hasNavBar: true
+                        },
                     },
                     {
-                        path: 'products'
-                    }*/,
+                        path: 'products/register',
+                        loadComponent: () => import('./pages/admin/products/register/register.component').then(m => m.RegisterProductComponent),
+                        data: {
+                            hasNavBar: false
+                        }
+                    },
+                    {
+                        path: 'products/update/:id',
+                        loadComponent: () => import('./pages/admin/products/update/update.component').then(m => UpdateProductComponent),
+                        data: {
+                            hasNavBar: false
+                        }
+                    },
                     {
                         path: 'stocks',
                         loadComponent: () => import('./pages/admin/stocks/stocks.component').then(m => m.StocksComponent),

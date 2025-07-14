@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, forwardRef, Input, OnInit } from '@angular/core';
 import { SelectModule } from 'primeng/select';
 import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import * as Enums from '../../models/enums.model';
@@ -10,7 +10,7 @@ import * as Enums from '../../models/enums.model';
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: SelectComponent,
+      useExisting: forwardRef(() => SelectComponent),
       multi: true
     }
   ],
